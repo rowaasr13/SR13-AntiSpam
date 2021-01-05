@@ -27,6 +27,8 @@ local price       = '[Pp]%s*[Rr]%s*[Ii]%s*[Cc]%s*[Ee]'
 local selling     = '[Ss]%s*[Ee]%s*[Ll]%s*[Ll]%s*[Ii]%s*[Nn]%s*[Gg]'
 local torghast    = '[Tt]%s*[Oo]%s*[Rr]%s*[Gg]%s*[Hh]%s*[Aa]%s*[Ss]%s*[Tt]'
 local vault       = '[Vv]%s*[Aa]%s*[Uu]%s*[Ll]%s*[Tt]'
+local weekly      = '[Ww]%s*[Ee]%s*[Ee]%s*[Kk]%s*[Ll]%s*[Yy]'
+local whisper     = '[Ww]%s*[Hh]%s*[Ii]%s*[Ss]%s*[Pp]%s*[Ee]%s*[Rr]'
 local wts         = '[Ww]%s*[Tt]%s*[Ss]'
 
 local ach_14460 = '|Hachievement:14460'
@@ -43,6 +45,7 @@ local patterns_boost = {
    concat_pattern_any{dawn, offer, thousands, ach_14460},
    concat_pattern_any{discount, sylvanas, m_plus, thousands},
    concat_pattern_any{gold, wts, torghast, boost},
+   concat_pattern_any{icecrown, m_plus, thousands, jou_1190},
    concat_pattern_any{icecrown, selling, ach_14460, gold},
    concat_pattern_any{icecrown, selling, nathria, thousands, curve},
    concat_pattern_any{nova, intime, thousands},
@@ -52,11 +55,14 @@ local patterns_boost = {
    concat_pattern_any{nova, thousands, "Get", vault},
    concat_pattern_any{nova, thousands, armor_stack},
    concat_pattern_any{nova, thousands, nathria},
+   concat_pattern_any{oblivion, selling, nathria},
    concat_pattern_any{oblivion, thousands, armor_stack},
    concat_pattern_any{offer, armor_stack, thousands},
+   concat_pattern_any{paradise, offer, torghast, gold},
    concat_pattern_any{sylvanas, armor_stack, thousands, intime},
    concat_pattern_any{sylvanas, intime, armor_stack},
    concat_pattern_any{sylvanas, intime, thousands, jou_1190},
+   concat_pattern_any{sylvanas, selling, nathria, thousands},
    concat_pattern_any{sylvanas, selling, thousands, jou_1190},
    concat_pattern_any{sylvanas, thousands, armor_stack},
    concat_pattern_any{sylvanas, thousands, intime},
@@ -66,6 +72,7 @@ local patterns_boost = {
    concat_pattern_any{wtcb, wts, thousands, gold},
    concat_pattern_any{wts, ach_14460, gold},
    concat_pattern_any{wts, armor_stack, fast, price},
+   concat_pattern_any{wts, boost, intime, price},
    concat_pattern_any{wts, boost, torghast, cheap, gold},
    concat_pattern_any{wts, boost, torghast, price},
    concat_pattern_any{wts, intime, sylvanas},
@@ -74,7 +81,8 @@ local patterns_boost = {
    concat_pattern_any{wts, nova, jou_1190},
    concat_pattern_any{wts, price, torghast, jou_1190},
    concat_pattern_any{wts, torghast, boost},
-   concat_pattern_any{paradise, offer, torghast, gold},
+   concat_pattern_any{wts, torghast, offer},
+   concat_pattern_any{wts, weekly, vault, whisper},
 }
 -- _G.patterns_boost = patterns_boost
 
