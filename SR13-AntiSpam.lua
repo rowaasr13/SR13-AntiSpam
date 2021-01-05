@@ -15,6 +15,8 @@ local wtcb        = '[Ww]%s*[Tt]%s*[Cc]%s*[Bb]'
 
 local armor_stack = '[Aa]%s*[Rr]%s*[Mm]%s*[Oo]%s*[Uu]?%s*[Rr]%s*[Ss]%s*[Tt]%s*[Aa]%s*[Cc]%s*[Kk]' -- optional U
 local boost       = '[Bb]%s*[Oo]%s*[Oo]%s*[Ss]%s*[Tt]'
+local cheap       = '[Cc]%s*[Hh]%s*[Ee]%s*[Aa]%s*[Pp]'
+local curve       = '[Cc]%s*[Uu]%s*[Rr]%s*[Vv]%s*[Ee]'
 local discount    = '[Dd]%s*[Ii]%s*[Ss]%s*[Cc]%s*[Oo]%s*[Uu]%s*[Nn]%s*[Tt]'
 local fast        = '[Ff]%s*[Aa]%s*[Ss]%s*[Tt]'
 local gold        = '[Gg]%s*[Oo]%s*[Ll]%s*[Dd]'
@@ -24,6 +26,7 @@ local offer       = '[Oo]%s*[Ff]%s*[Ff]%s*[Ee]?%s*[Rr]' -- optional E
 local price       = '[Pp]%s*[Rr]%s*[Ii]%s*[Cc]%s*[Ee]'
 local selling     = '[Ss]%s*[Ee]%s*[Ll]%s*[Ll]%s*[Ii]%s*[Nn]%s*[Gg]'
 local torghast    = '[Tt]%s*[Oo]%s*[Rr]%s*[Gg]%s*[Hh]%s*[Aa]%s*[Ss]%s*[Tt]'
+local vault       = '[Vv]%s*[Aa]%s*[Uu]%s*[Ll]%s*[Tt]'
 local wts         = '[Ww]%s*[Tt]%s*[Ss]'
 
 local ach_14460 = '|Hachievement:14460'
@@ -41,12 +44,12 @@ local patterns_boost = {
    concat_pattern_any{discount, sylvanas, m_plus, thousands},
    concat_pattern_any{gold, wts, torghast, boost},
    concat_pattern_any{icecrown, selling, ach_14460, gold},
-   concat_pattern_any{icecrown, selling, nathria, thousands, "CURVE"},
+   concat_pattern_any{icecrown, selling, nathria, thousands, curve},
    concat_pattern_any{nova, intime, thousands},
    concat_pattern_any{nova, offer, armor_stack, thousands},
    concat_pattern_any{nova, offer, thousands, armor_stack},
    concat_pattern_any{nova, offer, thousands}, -- should only be applied after clearing links
-   concat_pattern_any{nova, thousands, "Get.*vault"},
+   concat_pattern_any{nova, thousands, "Get", vault},
    concat_pattern_any{nova, thousands, armor_stack},
    concat_pattern_any{nova, thousands, nathria},
    concat_pattern_any{oblivion, thousands, armor_stack},
@@ -63,7 +66,7 @@ local patterns_boost = {
    concat_pattern_any{wtcb, wts, thousands, gold},
    concat_pattern_any{wts, ach_14460, gold},
    concat_pattern_any{wts, armor_stack, fast, price},
-   concat_pattern_any{wts, boost, torghast, "Cheap", gold},
+   concat_pattern_any{wts, boost, torghast, cheap, gold},
    concat_pattern_any{wts, boost, torghast, price},
    concat_pattern_any{wts, intime, sylvanas},
    concat_pattern_any{wts, jou_1190, thousands},
