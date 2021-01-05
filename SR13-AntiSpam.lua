@@ -86,7 +86,7 @@ local patterns_boost = {
 }
 -- _G.patterns_boost = patterns_boost
 
-local function chat_filter(self, event, msg, author, ...)
+local function msg_channel_filter(self, event, msg, author, ...)
    local known = known_spammers[author] or 0
 
    if known > 5 then
@@ -104,4 +104,4 @@ local function chat_filter(self, event, msg, author, ...)
    end
 end
 
-ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", chat_filter)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", msg_channel_filter)
