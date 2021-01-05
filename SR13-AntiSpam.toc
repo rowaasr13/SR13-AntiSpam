@@ -1,0 +1,25 @@
+## Interface: 90002
+
+## Title: SR13-AntiSpam
+## Version: v1
+## Notes:
+## Author: Oleg "Rowaa[SR13]" Volkov
+
+## X-License: All Rights Reserved.
+## X-Curse-Project-ID:
+## X-WoWI-ID:
+
+## LoadOnDemand: 0
+## LoadWith:
+## Dependencies:
+## OptionalDeps: SR13-TimeRecord
+
+## SavedVariables:
+## SavedVariablesPerCharacter: SVPC_SR13_AnitSpam_dump
+
+## X-Prefer-Devel: 0
+
++DEVEL.lua
+
+SR13-AntiSpam.lua
+dump.lua
