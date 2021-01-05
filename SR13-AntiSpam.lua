@@ -31,10 +31,10 @@ local weekly      = '[Ww]%s*[Ee]%s*[Ee]%s*[Kk]%s*[Ll]%s*[Yy]'
 local whisper     = '[Ww]%s*[Hh]%s*[Ii]%s*[Ss]%s*[Pp]%s*[Ee]%s*[Rr]'
 local wts         = '[Ww]%s*[Tt]%s*[Ss]'
 
-local ach_14460 = '|Hachievement:14460'
-local jou_1190  = '|Hjournal:%d+:1190:'
-local m_plus    = '[Mm]%s*%+%s*%d+'
-local thousands = '%d+[Kk]'
+local ach_14460   = '|Hachievement:14460'
+local jou_1190    = '|Hjournal:%d+:1190:'
+local m_plus      = '[Mm]%s*%+%s*%d+'
+local thousands   = '%d+[Kk]'
 
 local function concat_pattern_any(tbl)
    return table.concat(tbl, '.-')
@@ -94,7 +94,7 @@ local function chat_filter(self, event, msg, author, ...)
       return true
    end
 
-  for idx = 1, #patterns_boost do
+   for idx = 1, #patterns_boost do
       local pattern = patterns_boost[idx]
       if smatch(msg, pattern) then
          -- print("spam", msg)
