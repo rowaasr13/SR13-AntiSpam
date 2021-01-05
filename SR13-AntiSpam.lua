@@ -9,11 +9,13 @@ local dawn        = '[Dd]%s*[Aa]%s*[Ww]%s*[Nn]'
 local icecrown    = '[Ii]%s*[Cc]%s*[Ee]%s*[Cc]%s*[Rr]%s*[Oo]%s*[Ww]%s*[Nn]'
 local nova        = '[Nn]%s*[Oo]%s*[Vv]%s*[Aa]'
 local oblivion    = '[Oo]%s*[Bb]%s*[Ll]%s*[Ii]%s*[Vv]%s*[Ii]%s*[Oo]%s*[Nn]'
+local paradise    = '[Pp]%s*[Aa]%s*[Rr]%s*[Aa]%s*[Dd]%s*[Ii]%s*[Ss]%s*[Ee]'
 local sylvanas    = '[Ss]%s*[Yy]%s*[Ll]%s*[Vv]%s*[Aa]%s*[Nn]%s*[Aa]%s*[Ss]'
 local wtcb        = '[Ww]%s*[Tt]%s*[Cc]%s*[Bb]'
 
 local armor_stack = '[Aa]%s*[Rr]%s*[Mm]%s*[Oo]%s*[Uu]?%s*[Rr]%s*[Ss]%s*[Tt]%s*[Aa]%s*[Cc]%s*[Kk]' -- optional U
 local boost       = '[Bb]%s*[Oo]%s*[Oo]%s*[Ss]%s*[Tt]'
+local discount    = '[Dd]%s*[Ii]%s*[Ss]%s*[Cc]%s*[Oo]%s*[Uu]%s*[Nn]%s*[Tt]'
 local fast        = '[Ff]%s*[Aa]%s*[Ss]%s*[Tt]'
 local gold        = '[Gg]%s*[Oo]%s*[Ll]%s*[Dd]'
 local intime      = '[Ii]%s*[Nn]%s*[Tt]%s*[Ii]%s*[Mm]%s*[Ee]'
@@ -26,6 +28,7 @@ local wts         = '[Ww]%s*[Tt]%s*[Ss]'
 
 local ach_14460 = '|Hachievement:14460'
 local jou_1190  = '|Hjournal:%d+:1190:'
+local m_plus    = '[Mm]%s*%+%s*%d+'
 local thousands = '%d+[Kk]'
 
 local function concat_pattern_any(tbl)
@@ -35,6 +38,7 @@ end
 local patterns_boost = {
    concat_pattern_any{boost, selling, price},
    concat_pattern_any{dawn, offer, thousands, ach_14460},
+   concat_pattern_any{discount, sylvanas, m_plus, thousands},
    concat_pattern_any{gold, wts, torghast, boost},
    concat_pattern_any{icecrown, selling, ach_14460, gold},
    concat_pattern_any{icecrown, selling, nathria, thousands, "CURVE"},
@@ -67,6 +71,7 @@ local patterns_boost = {
    concat_pattern_any{wts, nova, jou_1190},
    concat_pattern_any{wts, price, torghast, jou_1190},
    concat_pattern_any{wts, torghast, boost},
+   concat_pattern_any{paradise, offer, torghast, gold},
 }
 -- _G.patterns_boost = patterns_boost
 
