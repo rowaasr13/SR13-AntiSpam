@@ -29,7 +29,7 @@ local jou_1190  = '|Hjournal:%d+:1190:'
 local thousands = '%d+[Kk]'
 
 local function concat_pattern_any(tbl)
-   return table.concat(tbl, '.*')
+   return table.concat(tbl, '.-')
 end
 
 local patterns_boost = {
