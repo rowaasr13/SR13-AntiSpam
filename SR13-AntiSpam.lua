@@ -86,7 +86,10 @@ local patterns_boost = {
 }
 -- _G.patterns_boost = patterns_boost
 
-local function msg_channel_filter(self, event, msg, author, ...)
+local function msg_channel_filter(self, event, msg, author, _, _, _, specialFlag, zoneChannelID)
+   if not zoneChannelID then return end
+   if specialFlag == "GM" or specialFlag == "DEV" then return end
+
    local known = known_spammers[author] or 0
 
    if known > 5 then
