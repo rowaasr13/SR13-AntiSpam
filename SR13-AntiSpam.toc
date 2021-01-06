@@ -6,7 +6,7 @@
 ## Author: Oleg "Rowaa[SR13]" Volkov
 
 ## X-License: All Rights Reserved.
-## X-Curse-Project-ID:
+## X-Curse-Project-ID: 434094
 ## X-WoWI-ID:
 
 ## LoadOnDemand: 0
