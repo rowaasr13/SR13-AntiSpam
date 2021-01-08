@@ -1,7 +1,8 @@
 local a_name, a_env = ...
 if not a_env.load_this then return end
 
-local smatch = string.match
+local strmatch = string.match
+local strgsub  = string.gsub
 
 local known_spammers = {}
 
@@ -20,10 +21,10 @@ local function msg_channel_filter(self, event, msg, author, _, _, _, specialFlag
       return true
    end
 
-   msg = msg:gsub(cleanup_pattern, cleanup_replace)
+   msg = strgsub(msg, cleanup_pattern, cleanup_replace)
    for idx = 1, #patterns_boost do
       local pattern = patterns_boost[idx]
-      if smatch(msg, pattern) then
+      if strmatch(msg, pattern) then
          -- print("spam", msg)
          known_spammers[author] = known + 1
          return true
