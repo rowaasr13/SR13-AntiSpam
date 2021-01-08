@@ -278,4 +278,15 @@ local patterns_boost = {
    '[Ww]%s*[Tt]%s*[Ss].-|Hjournal:%d+:1190:.-[Tt]%s*[Oo]%s*[Rr]%s*[Gg]%s*[Hh]%s*[Aa]%s*[Ss]%s*[Tt]',
    '|Hjournal:%d+:2424:.-%d+[Kk].-[Gg]%s*[Ee]%s*[Tt].-|Hachievement:14460',
 }
+
+local cleanup_pattern = "[\208\209][\130\149\154\158\162\181\186\190]"
+local cleanup_replace = {
+   ["\208\149"] = "e", ["\208\181"] = "e",
+   ["\208\154"] = "k", ["\208\186"] = "k",
+   ["\208\158"] = "o", ["\208\190"] = "o",
+   ["\208\162"] = "t", ["\209\130"] = "t",
+}
+
 a_env.patterns_boost = patterns_boost
+a_env.cleanup_pattern = cleanup_pattern
+a_env.cleanup_replace = cleanup_replace

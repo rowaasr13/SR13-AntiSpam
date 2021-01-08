@@ -6,6 +6,8 @@ local smatch = string.match
 local known_spammers = {}
 
 local patterns_boost = a_env.patterns_boost
+local cleanup_pattern = a_env.cleanup_pattern
+local cleanup_replace = a_env.cleanup_replace
 
 local function msg_channel_filter(self, event, msg, author, _, _, _, specialFlag, zoneChannelID)
    if not zoneChannelID then return end
@@ -18,6 +20,7 @@ local function msg_channel_filter(self, event, msg, author, _, _, _, specialFlag
       return true
    end
 
+   msg = msg:gsub(cleanup_pattern, cleanup_replace)
    for idx = 1, #patterns_boost do
       local pattern = patterns_boost[idx]
       if smatch(msg, pattern) then
