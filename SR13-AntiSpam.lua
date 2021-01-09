@@ -36,7 +36,7 @@ local function msg_channel_filter(self, event, msg, author, _, _, _, specialFlag
    for idx = 1, #patterns_boost do
       local pattern = patterns_boost[idx]
       if strmatch(msg, pattern) then
-         -- print("spam", msg)
+         -- print("spam", BLUE_FONT_COLOR:GenerateHexColorMarkup() .. msg)
          known_spammers[author] = known + 1
          prev_result = true
          return prev_result
