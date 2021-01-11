@@ -1,6 +1,10 @@
 local a_name, a_env = ...
 if not a_env.load_this then return end
 
+local a_basename = a_env.basename
+if not _G[a_basename] then _G[a_basename] = {} end
+local options = _G[a_basename]
+
 local strmatch = string.match
 local strgsub  = string.gsub
 
@@ -36,7 +40,7 @@ local function msg_channel_filter(self, event, msg, author, _, _, _, specialFlag
    for idx = 1, #patterns_boost do
       local pattern = patterns_boost[idx]
       if strmatch(msg, pattern) then
-         -- print("spam", BLUE_FONT_COLOR:GenerateHexColorMarkup() .. msg)
+         if options.highlight_spam then print("spam", BLUE_FONT_COLOR:GenerateHexColorMarkup() .. msg) end
          known_spammers[author] = known + 1
          prev_result = true
          return prev_result
