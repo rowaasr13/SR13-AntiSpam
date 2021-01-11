@@ -5,8 +5,9 @@ local a_basename = a_env.basename
 if not _G[a_basename] then _G[a_basename] = {} end
 local options = _G[a_basename]
 
-local strmatch = string.match
-local strgsub  = string.gsub
+local strmatch  = string.match
+local strgsub   = string.gsub
+local guid_self = UnitGUID("player")
 
 local known_spammers = {}
 
@@ -15,7 +16,7 @@ local cleanup_pattern = a_env.cleanup_pattern
 local cleanup_replace = a_env.cleanup_replace
 
 local prev_lineID, prev_result
-local function msg_channel_filter(self, event, msg, author, _, _, _, specialFlag, zoneChannelID, _, _, _, lineID)
+local function msg_channel_filter(self, event, msg, author, _, _, _, specialFlag, zoneChannelID, _, _, _, lineID, guid)
    if not zoneChannelID then return end
 
    -- For some reason chat system calls filter several times on each line
@@ -25,6 +26,7 @@ local function msg_channel_filter(self, event, msg, author, _, _, _, specialFlag
    prev_result = nil
 
    if specialFlag == "GM" or specialFlag == "DEV" then return end
+   if guid == guid_self then return end
 
    -- All checks above are trivial, withou side-effects and return nil,
    -- everything below this line MUST update prev_result.
