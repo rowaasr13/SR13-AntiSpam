@@ -4,6 +4,7 @@ if not a_env.load_this then return end
 local a_basename = a_env.basename
 if not _G[a_basename] then _G[a_basename] = {} end
 local options = _G[a_basename]
+a_env.export = options
 
 local strmatch  = string.match
 local strgsub   = string.gsub

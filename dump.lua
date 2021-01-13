@@ -3,7 +3,7 @@ if not a_env.load_this then return end
 
 local sv = "SVPC_SR13_AnitSpam_dump"
 
-function cf1dump(frame)
+local function ChatFrameDump(frame)
    if not frame then frame = ChatFrame1 end
    local dump = {}
    for idx = #frame.visibleLines, 1, -1 do
@@ -11,4 +11,9 @@ function cf1dump(frame)
       dump[idx] = entry.messageInfo.message
    end
    _G[sv] = dump
+end
+a_env.export.ChatFrameDump = ChatFrameDump
+
+if a_env.is_devel then
+   _G.cf1dump = ChatFrameDump
 end
