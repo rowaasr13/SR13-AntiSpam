@@ -1,7 +1,7 @@
 ## Interface: 90002
 
 ## Title: SR13-AntiSpam
-## Version: v5
+## Version: v6
 ## Notes:
 ## Author: Oleg "Rowaa[SR13]" Volkov
 
