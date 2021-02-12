@@ -9,6 +9,7 @@ a_env.export = options
 local strmatch  = string.match
 local strgsub   = string.gsub
 local guid_self = UnitGUID("player")
+local debugprofilestop = debugprofilestop
 
 local known_spammers = {}
 
@@ -39,6 +40,8 @@ local function msg_channel_filter(self, event, msg, author, _, _, _, specialFlag
       return prev_result
    end
 
+   -- local pattren_loop_start = debugprofilestop()
+   local pattren_loop_end
    msg = strgsub(msg, cleanup_pattern, cleanup_replace)
    for idx = 1, #patterns_boost do
       local pattern = patterns_boost[idx]
@@ -46,9 +49,11 @@ local function msg_channel_filter(self, event, msg, author, _, _, _, specialFlag
          if options.highlight_spam then print("spam", BLUE_FONT_COLOR:GenerateHexColorMarkup() .. msg) end
          known_spammers[author] = known + 1
          prev_result = true
+         -- pattren_loop_end = debugprofilestop()
          return prev_result
       end
    end
+   -- pattren_loop_end = debugprofilestop()
 end
 
 ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", msg_channel_filter)
