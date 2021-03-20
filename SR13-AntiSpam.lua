@@ -6,8 +6,8 @@ if not _G[a_basename] then _G[a_basename] = {} end
 local options = _G[a_basename]
 a_env.export = options
 
-local strmatch  = string.match
 local strgsub   = string.gsub
+local strfind   = string.find
 local guid_self = UnitGUID("player")
 local debugprofilestop = debugprofilestop
 
@@ -45,8 +45,8 @@ local function msg_channel_filter(self, event, msg, author, _, _, _, specialFlag
    msg = strgsub(msg, cleanup_pattern, cleanup_replace)
    for idx = 1, #patterns_boost do
       local pattern = patterns_boost[idx]
-      if strmatch(msg, pattern) then
          if options.highlight_spam then print("spam", BLUE_FONT_COLOR:GenerateHexColorMarkup() .. msg) end
+      if strfind(msg, pattern) then
          known_spammers[author] = known + 1
          prev_result = true
          -- pattren_loop_end = debugprofilestop()
