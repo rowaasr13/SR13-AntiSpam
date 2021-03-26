@@ -46,8 +46,15 @@ local function msg_channel_filter(self, event, msg, author, _, _, _, specialFlag
    -- local pattren_loop_end
    for idx = 1, #patterns_boost do
       local pattern = patterns_boost[idx]
-         if options.highlight_spam then print("spam", BLUE_FONT_COLOR:GenerateHexColorMarkup() .. msg) end
       if strfind(msg, pattern) then
+         local highlight_spam = options.highlight_spam
+         if highlight_spam then
+            if highlight_spam == "author" then
+               print("spam", BLUE_FONT_COLOR:GenerateHexColorMarkup() .. msg, author)
+            else
+               print("spam", BLUE_FONT_COLOR:GenerateHexColorMarkup() .. msg)
+            end
+         end
          known_spammers[author] = known + 1
          prev_result = true
          -- pattren_loop_end = debugprofilestop()
