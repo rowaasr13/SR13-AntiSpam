@@ -42,8 +42,8 @@ local function msg_channel_filter(self, event, msg, author, _, _, _, specialFlag
 
    msg = strgsub(msg, cleanup_pattern, cleanup_replace)
 
-   -- local pattren_loop_start = debugprofilestop()
-   local pattren_loop_end
+   -- local res_f = (function() local pattren_loop_start = debugprofilestop()
+   -- local pattren_loop_end
    for idx = 1, #patterns_boost do
       local pattern = patterns_boost[idx]
          if options.highlight_spam then print("spam", BLUE_FONT_COLOR:GenerateHexColorMarkup() .. msg) end
@@ -51,10 +51,15 @@ local function msg_channel_filter(self, event, msg, author, _, _, _, specialFlag
          known_spammers[author] = known + 1
          prev_result = true
          -- pattren_loop_end = debugprofilestop()
+         -- print("spam match f", pattren_loop_end - pattren_loop_start, "ms")
          return prev_result
       end
    end
    -- pattren_loop_end = debugprofilestop()
+   -- print("NO spam match f", pattren_loop_end - pattren_loop_start, "ms")
+   -- end)()
+
+   -- return res_f
 end
 
 ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", msg_channel_filter)
