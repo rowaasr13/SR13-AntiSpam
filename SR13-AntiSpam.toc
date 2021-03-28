@@ -22,5 +22,7 @@
 +DEVEL.lua
 
 patterns_boost.lua
+patterns_imptree_boost.lua
+
 SR13-AntiSpam.lua
 dump.lua
