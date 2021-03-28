@@ -16,6 +16,7 @@ local known_spammers = {}
 local patterns_boost = a_env.patterns_boost
 local cleanup_pattern = a_env.cleanup_pattern
 local cleanup_replace = a_env.cleanup_replace
+local is_imptree_boost = a_env.is_imptree_boost
 
 local prev_lineID, prev_result
 local function msg_channel_filter(self, event, msg, author, _, _, _, specialFlag, zoneChannelID, _, _, _, lineID, guid)
@@ -42,8 +43,9 @@ local function msg_channel_filter(self, event, msg, author, _, _, _, specialFlag
 
    msg = strgsub(msg, cleanup_pattern, cleanup_replace)
 
-   -- local res_f = (function() local pattren_loop_start = debugprofilestop()
-   -- local pattren_loop_end
+   local profile_f
+   local res_f = (function() local pattren_loop_start = debugprofilestop()
+   local pattren_loop_end
    for idx = 1, #patterns_boost do
       local pattern = patterns_boost[idx]
       if strfind(msg, pattern) then
@@ -57,16 +59,38 @@ local function msg_channel_filter(self, event, msg, author, _, _, _, specialFlag
          end
          known_spammers[author] = known + 1
          prev_result = true
-         -- pattren_loop_end = debugprofilestop()
-         -- print("spam match f", pattren_loop_end - pattren_loop_start, "ms")
+         pattren_loop_end = debugprofilestop()
+         profile_f = pattren_loop_end - pattren_loop_start
          return prev_result
       end
    end
-   -- pattren_loop_end = debugprofilestop()
-   -- print("NO spam match f", pattren_loop_end - pattren_loop_start, "ms")
-   -- end)()
+   pattren_loop_end = debugprofilestop()
+   profile_f = pattren_loop_end - pattren_loop_start
+   end)()
 
-   -- return res_f
+   local profile_t
+   local res_t = (function() local pattren_loop_start = debugprofilestop()
+   local pattren_loop_end
+
+   local res = is_imptree_boost(msg)
+   pattren_loop_end = debugprofilestop()
+   profile_t = pattren_loop_end - pattren_loop_start
+   return res
+
+   end)()
+
+   if a_env.is_devel then
+      local profile = SVPC_SR13_AnitSpam_profile
+      if not profile then profile = {} SVPC_SR13_AnitSpam_profile = profile end
+      profile[#profile + 1] = { res_f = res_f, profile_f = profile_f, res_t = res_t, profile_t = profile_t }
+      print(
+         "f:" .. (res_f and "O" or "x") .. " " .. profile_f .. "ms " ..
+         "t:" .. (res_t and "O" or "x") .. " " .. profile_t .. "ms ",
+         ((not not res_t) ~= (not not res_f) and msg or '')
+      )
+   end
+
+   return res_f
 end
 
 ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", msg_channel_filter)
