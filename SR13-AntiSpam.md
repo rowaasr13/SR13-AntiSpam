@@ -38,4 +38,4 @@ This addon includes a built-in visible chat dumper. Scroll to the spam so it is 
 	
 	/run _G['SR13-AntiSpam'].ChatFrameDump()
 
-Now log out or reload UI to let WoW save results and look for saved file in `(World of Warcraft install location)\_retail_\WTF\Account\(your accout)\(your server)\(your character)\SavedVariables\SR13-AntiSpam.lua`. Delete chat lines caught in the dump that are not spam and then send that file to me.
+Now log out or reload UI to let WoW save results and look for saved file in `(World of Warcraft install location)\_retail_\WTF\Account\(your account)\(your server)\(your character)\SavedVariables\SR13-AntiSpam.lua`. Delete chat lines caught in the dump that are not spam and then send that file to me.
