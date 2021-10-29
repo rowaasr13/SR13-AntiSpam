@@ -1,7 +1,7 @@
 ## Interface: 90100
 
 ## Title: SR13-AntiSpam
-## Version: v32
+## Version: v33
 ## Notes:
 ## Author: Oleg "Rowaa[SR13]" Volkov
 
